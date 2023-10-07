@@ -16,7 +16,7 @@ function LoginScreen() {
         placeholder="Password"
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button}onPress={() => navigation.navigate('Main')}>
+      <TouchableOpacity style={styles.button}onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity>

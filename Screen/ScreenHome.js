@@ -6,20 +6,58 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 const storiesData = [
-    { id: 1, image: require('../assets/ramen.jpg'), content: 'Story 1' },
-    { id: 2, image: require('../assets/ramen.jpg'), content: 'Story 2' },
-    { id: 3, image: require('../assets/ramen.jpg'), content: 'Story 3' },
-    { id: 4, image: require('../assets/ramen.jpg'), content: 'Story 3' },
-    { id: 5, image: require('../assets/ramen.jpg'), content: 'Story 3' },
-    { id: 6, image: require('../assets/ramen.jpg'), content: 'Story 3' },
+    { id: 1, image: require('../assets/slide1.png'), content: 'CLOTHING' },
+    { id: 2, image: require('../assets/slide2.png'), content: 'ACCESSORIES' },
+    { id: 3, image: require('../assets/slide3.png'), content: 'SHOES' },
   ];
+const newArrival = [
+    { id: 4, image: require('../assets/arri2.png'), content: 'CLOTHING' },
+    { id: 5, image: require('../assets/arri2.png'), content: 'Sweet Never Salty Mini Dress'},
+    { id: 6, image: require('../assets/arri2.png'), content: 'CLOTHING'},
+];
+const Featured = [
+    { id: 7, image: require('../assets/arri2.png'), content: 'CLOTHING' },
+    { id: 8, image: require('../assets/featured2.png'), content: 'Sweet Never Salty Mini Dress'},
+    { id: 9, image: require('../assets/featured3.png'), content: 'CLOTHING'},
+];
+
 function StorySlide() {
     return (
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.storyContainer}>
         {storiesData.map((story) => (
-          <View key={story.id} style={styles.slide}>
-            <Image source={story.image} style={styles.imageTop} />
-            <Text style={styles.text}>{story.content}</Text>
+          <View key={story.id} style={styles.slidecontain}>
+                <View style={[styles[`slide${story.id}`]]}>
+                    <Image source={story.image} style={styles.imageTop} />
+                    <Text style={styles.textslide}>{story.content}</Text>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
+    );
+  }
+  function SlideArri() {
+    return (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {newArrival.map((story) => (
+          <View key={story.id} style={styles.SlideArri}>
+                <View style={[styles[`slide${story.id}`]]}>
+                    <Image source={story.image} style={styles.imageArri} />
+                    <Text style={styles.textArri}>{story.content}</Text>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
+    );
+  }
+  function SlideFeatured() {
+    return (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {Featured.map((story) => (
+          <View key={story.id} style={styles.SlideArri}>
+                <View style={[styles[`slide${story.id}`]]}>
+                    <Image source={story.image} style={styles.imageArri} />
+                    <Text style={styles.textArri}>{story.content}</Text>
+            </View>
           </View>
         ))}
       </ScrollView>
@@ -28,46 +66,48 @@ function StorySlide() {
 function Screenhome() {
     const navigation = useNavigation();
     return(
-        
         <SafeAreaView style={styles.safeArea}>
+            <View style={styles.Group}>
+                <View style={styles.Group1}>
+                    <Text style={styles.shoper}>Shopertino</Text>
+                    <Image style={styles.hamburger} source = {require('../assets/harmburger-icon.png')}/>
+                    <Image style={styles.shopping} source = {require('../assets/shopping-bag-filled.png')}/>
+                    <View style={styles.Line}></View>
+                </View>
+            </View>    
             <ScrollView style={styles.container}>
-            <View style={{height: 70, width:'100%',marginBottom:5,justifyContent:'center',}}>
-                <TextInput placeholder="Search" style={styles.textInput}></TextInput>
-                <></>
-            </View>
             <View style={styles.slide}>
-                <Text>Next to you</Text>
-                <TouchableOpacity style={styles.button}onPress={() => navigation.navigate('Next to you')}>
-                    <Text>On the map</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={{ height: 100,backgroundColor:'white', }}>
                 <StorySlide>
                 </StorySlide >
             </View>
-            <View style={styles.slide}>
-                <Text>Categories</Text>
-                <TouchableOpacity style={styles.button}onPress={() => navigation.navigate('Next to you')}>
-                    <Text>On the map</Text>
-                </TouchableOpacity>
+            <View style={{alignItems:'center',marginTop:20,marginBottom:20,}}>
+                <Text style={{fontSize:20,}}>New Arrival</Text>
             </View>
-                <View style={{height: 150, width:'100%' ,marginBottom:5}}>
-                    <View style={styles.content}>
-
-                    </View>
-                    <View style={styles.content}>
-
-                    </View>
-                    <View style={styles.content}>
-
-                    </View>
-                    <View style={styles.content}>
-
-                    </View>
+            <View style={styles.slideArri}>
+                <SlideArri>
+                </SlideArri >
+            </View>
+            <View style={{marginTop:20,marginBottom:20,}}>
+                <Text style={{fontSize:20,}}>Featured</Text>
+            </View>
+            <View style={styles.slideFeatured}>
+                <SlideFeatured>
+                </SlideFeatured >
+            </View>
+            <View style={{marginTop:20,marginBottom:20,}}>
+                <Text style={{fontSize:20,}}>Best Seller</Text>
+            </View>
+            <View style={styles.section4}>
+                <View style={styles.section41}>
+                    <Image style={styles.bestsell} source = {require('../assets/sell1.png')}/>
+                    <Image style={styles.bestsell} source = {require('../assets/sell2.png')}/>
                 </View>
-                
-                
-                
+                <View style={styles.section42}>
+                    <Image style={styles.bestsell} source = {require('../assets/sell3.png')}/>
+                    <Image style={styles.bestsell} source = {require('../assets/sell4.png')}/>
+                </View>
+            </View>
+           
             </ScrollView>
         </SafeAreaView>
         ) 
@@ -79,48 +119,125 @@ const styles = StyleSheet.create({
     },
     container:{
         flex:1,
-        width:'98%',
-        marginLeft:'1%',
-        backgroundColor:'lightgray'
-    },
-    slide:{
-        flexDirection:'row',
-        height:50,
-        justifyContent:'space-around',
         
     },
-    button:{
-        height:'100%',
-    },
-    textInput:{
-        width: '70%',height:'70%',textAlign:'center',justifyContent:'center',
-        borderRadius:10,
+    Group:{
+        height:37,
         backgroundColor:'white',
-        marginLeft:10,
+        width:375,
     },
-    content:{
-        height:60,
-        width:'100%',
+    Group1:{
+        position: 'absolute',
+        height:25,
+        width:375,
+        top:3,
+    },
+    Line:{
+        top:33,
         backgroundColor:'white',
-        marginTop:5,
+        borderColor:'black',
+        borderBottomWidth: 1,
     },
-    section:{
-        width:'100%' , 
-        height: 400 ,
-        position: 'relative',
-        justifyContent:'',
-        flexDirection: 'column',
+    shoper:{
+        position: 'absolute',
+        left: '40%',
+        top: 0,
+        height: 21,
+        top:3,
+        fontSize: 17,
+        textAlign: 'center',
     },
-    colum1:{
-        width:'100%',
+    hamburger:{
+        position: 'absolute',
+        left: 20,
+        top: 0,
+        width: 25,
+        height: 25,
     },
-    
+    shopping:{
+        position: 'absolute',
+        left: 320,
+        top: 0,
+        width: 25,
+        height: 25,
+    },
+    slide:{
+        marginTop:20,
+    },
     imageTop: {
-        width: 100,
-        height: 100,
-        borderRadius:10,
-        marginLeft:5,
-        marginRight:5,
+        width: 144,
+        height: 66,
+        position: 'absolute',  
+        opacity:0.7,
     },
-   
+    slide1: {    
+        backgroundColor:'black', 
+        width: 144,
+        height: 66,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+        marginRight:20,
+      },
+    slide2: {   
+        width: 144,
+        height: 66,
+        backgroundColor:'black',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+        marginRight:20,
+    },
+    slide3: { 
+        backgroundColor:'black',
+        width: 144,
+        height: 66,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+    },
+    textslide:{
+        color:'white',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    slide4:{
+        
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+        marginRight:20,
+    },
+    slide5:{
+        
+        marginRight:20,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+    },
+    slide6:{
+        
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
+        marginRight:20,
+    },
+    imageArri:{
+        height:366,
+        width:243,
+        
+    },
+    textArri:{
+        
+    },
+    section41:{
+        flexDirection:'row',
+    },
+    section42:{
+        flexDirection:'row',
+    },
+    bestsell:{
+        height:100,
+        width:100,
+    },
 })

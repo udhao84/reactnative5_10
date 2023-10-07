@@ -7,6 +7,7 @@ import { Text, View } from 'react-native';
 // Các màn hình con cho thanh điều hướng dưới
 import Login from './Screen/Login';
 import Main from './Screen/ScreenMain';
+import Home from './Screen/ScreenHome';
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -50,6 +51,7 @@ function MainNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="login" component={Login}  options={{ headerShown: false }}/>
       <Stack.Screen name="Main" component={Main}  options={{ headerShown: false }}/>
+      <Stack.Screen name="Home" component={Home}  options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
